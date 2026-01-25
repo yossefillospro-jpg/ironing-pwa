@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { sendWhatsAppOrder } from '../utils/whatsapp';
 import './OrderConfirmationPage.css';
 
 function OrderConfirmationPage() {
   const { t } = useLanguage();
   const { orderId } = useParams();
+  const location = useLocation();
+  const order = location.state?.order;
 
   return (
     <div className="confirmation-page">
@@ -16,9 +19,9 @@ function OrderConfirmationPage() {
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
         </div>
-        
+
         <h1 className="confirmation-title">{t('orderPlaced')}</h1>
-        
+
         <div className="confirmation-details">
           <div className="detail-row">
             <span className="detail-label">{t('orderNumber')}</span>
@@ -32,15 +35,39 @@ function OrderConfirmationPage() {
 
         <div className="confirmation-message">
           <p>
-            {t('language') === 'he' 
+            {t('language') === 'he'
               ? 'תודה על ההזמנה! ניצור איתך קשר בקרוב לאישור.'
-              : 'Merci pour votre commande ! Nous vous contacterons bientôt pour confirmation.'
-            }
+              : 'Merci pour votre commande ! Nous vous contacterons bientôt pour confirmation.'}
           </p>
         </div>
 
+        {/* ✅ ICI on met le handshake WhatsApp */}
         <div className="confirmation-actions">
-          <Link to="/orders" className="btn btn-primary btn-lg btn-block">
+          {order && (
+            <button
+              className="btn btn-primary btn-lg btn-block"
+              onClick={() =>
+                sendWhatsAppOrder({
+                  name: order.name,
+                  phone: order.phone,
+                  pickupAddress: order.pickupAddress,
+                  items: order.itemsText || order.items,
+                  total: order.total,
+                  slot: order.slot,
+                })
+              }
+            >
+              {t('language') === 'he' ? 'אישור בוואטסאפ' : 'Confirmer sur WhatsApp'}
+            </button>
+          )}
+
+          <p style={{ fontSize: 13, opacity: 0.8, marginTop: 8 }}>
+            {t('language') === 'he'
+              ? 'ההזמנה תאושר רק לאחר אישור בוואטסאפ'
+              : 'La commande est confirmée uniquement après validation par WhatsApp.'}
+          </p>
+
+          <Link to="/orders" className="btn btn-secondary btn-block">
             {t('orderHistory')}
           </Link>
           <Link to="/" className="btn btn-secondary btn-block">
@@ -53,3 +80,4 @@ function OrderConfirmationPage() {
 }
 
 export default OrderConfirmationPage;
+
