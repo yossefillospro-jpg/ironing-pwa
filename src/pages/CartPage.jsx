@@ -106,18 +106,53 @@ function CartPage() {
       });
 
       if (response.ok) {
-        const order = await response.json();
+        const created = await response.json();
+
+        // ✅ Objet envoyé à la page confirmation pour le handshake WhatsApp
+        const orderForWa = {
+          name: customer.name,
+          phone: customer.phone,
+          pickupAddress:
+            deliveryMethod === 'dropOff'
+              ? 'Dépôt sur place'
+              : customer.address,
+          itemsText: items.map(i => `${i.name} x${i.quantity}`).join(', '),
+          total: grandTotal,
+          slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
+        };
+
         clearCart();
-        navigate(`/order-confirmation/${order.id}`);
+
+        navigate(`/order-confirmation/${created.id}`, {
+          state: { order: orderForWa }
+        });
+
       } else {
         throw new Error('Failed to create order');
       }
     } catch (error) {
       console.error('Order submission error:', error);
+
       // For demo purposes, navigate anyway with a mock order ID
       const mockOrderId = `ORD-${Date.now()}`;
+
+      const orderForWa = {
+        name: customer.name,
+        phone: customer.phone,
+        pickupAddress:
+          deliveryMethod === 'dropOff'
+            ? 'Dépôt sur place'
+            : customer.address,
+        itemsText: items.map(i => `${i.name} x${i.quantity}`).join(', '),
+        total: grandTotal,
+        slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
+      };
+
       clearCart();
-      navigate(`/order-confirmation/${mockOrderId}`);
+
+      navigate(`/order-confirmation/${mockOrderId}`, {
+        state: { order: orderForWa }
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -212,7 +247,7 @@ function CartPage() {
 
       {/* Submit Button */}
       <div className="cart-actions">
-        <button 
+        <button
           className="btn btn-primary btn-lg btn-block"
           onClick={handleSubmit}
           disabled={isSubmitting}
@@ -235,3 +270,4 @@ function CartPage() {
 }
 
 export default CartPage;
+
