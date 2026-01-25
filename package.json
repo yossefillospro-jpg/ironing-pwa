@@ -26,3 +26,6 @@
     "concurrently": "^8.2.2"
   }
 }
+"engines": {
+  "node": "20.x"
+},
