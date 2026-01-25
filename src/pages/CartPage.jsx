@@ -12,8 +12,8 @@ import './CartPage.css';
 function CartPage() {
   const { t, language } = useLanguage();
   const navigate = useNavigate();
-  const { 
-    items, 
+  const {
+    items,
     itemsTotal,
     deliveryFee,
     grandTotal,
@@ -116,7 +116,16 @@ function CartPage() {
             deliveryMethod === 'dropOff'
               ? 'Dépôt sur place'
               : customer.address,
-          itemsText: items.map(i => `${i.name} x${i.quantity}`).join(', '),
+
+          // ✅ FIX: plus de "undefined"
+          itemsText: items
+            .map(i => {
+              const productName =
+                (language === 'he' ? i.nameHe : i.nameFr) || i.name || i.title || 'Article';
+              return `${productName} x${i.quantity}`;
+            })
+            .join(', '),
+
           total: grandTotal,
           slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
         };
@@ -143,7 +152,16 @@ function CartPage() {
           deliveryMethod === 'dropOff'
             ? 'Dépôt sur place'
             : customer.address,
-        itemsText: items.map(i => `${i.name} x${i.quantity}`).join(', '),
+
+        // ✅ FIX: plus de "undefined"
+        itemsText: items
+          .map(i => {
+            const productName =
+              (language === 'he' ? i.nameHe : i.nameFr) || i.name || i.title || 'Article';
+            return `${productName} x${i.quantity}`;
+          })
+          .join(', '),
+
         total: grandTotal,
         slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
       };
