@@ -1,0 +1,95 @@
+/* Order Confirmation Page Styles */
+
+.confirmation-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-success-light) 0%, #e6fffa 100%);
+}
+
+.confirmation-content {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp var(--transition-slow) ease-out;
+}
+
+.confirmation-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-success-light);
+  border-radius: var(--radius-full);
+  color: var(--color-success);
+  animation: scaleIn 0.5s ease-out 0.2s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confirmation-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-success);
+  margin-bottom: var(--space-6);
+}
+
+.confirmation-details {
+  background: var(--color-bg-warm);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.detail-row:not(:last-child) {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.detail-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.detail-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.confirmation-message {
+  margin-bottom: var(--space-6);
+}
+
+.confirmation-message p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

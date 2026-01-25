@@ -1,0 +1,213 @@
+/* Orders Page Styles */
+
+.orders-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+/* Header */
+.orders-header {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.orders-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Phone Search */
+.phone-search {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.phone-search-form {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.phone-input {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.phone-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Orders List */
+.orders-list {
+  flex: 1;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Loading & Empty States */
+.orders-loading,
+.orders-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.orders-loading .spinner {
+  margin-bottom: var(--space-4);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  opacity: 0.3;
+}
+
+.orders-empty h3 {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.orders-empty p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* Order Card */
+.order-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-4);
+  background: var(--color-bg-warm);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.order-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.order-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.order-value {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.order-statuses {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.status-info {
+  background: var(--color-info-light);
+  color: var(--color-info);
+}
+
+.status-warning {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.status-success {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.order-date {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.order-items {
+  padding: var(--space-3) var(--space-4);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  font-size: var(--font-size-sm);
+}
+
+.order-item:not(:last-child) {
+  border-bottom: 1px dashed var(--color-border-light);
+}
+
+.item-name {
+  color: var(--color-text);
+}
+
+.item-price {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-warm);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.order-delivery {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.order-total {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.order-total .total-value {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+}

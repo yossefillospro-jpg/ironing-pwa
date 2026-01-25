@@ -1,0 +1,28 @@
+{
+  "name": "ironing-service-pwa",
+  "version": "1.0.0",
+  "description": "PWA privée pour service de repassage local",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "node server/index.js",
+    "start": "concurrently \"npm run server\" \"npm run dev\""
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "better-sqlite3": "^9.2.2",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.0",
+    "vite-plugin-pwa": "^0.17.4",
+    "concurrently": "^8.2.2"
+  }
+}

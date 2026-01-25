@@ -1,0 +1,196 @@
+/* Cart Item Styles */
+
+.cart-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+}
+
+.cart-item-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-warm);
+  border-radius: var(--radius);
+  font-size: 1.5rem;
+}
+
+.cart-item-details {
+  min-width: 0;
+}
+
+.cart-item-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.cart-item-price {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.cart-qty-control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--color-bg-warm);
+  border-radius: var(--radius);
+  padding: 2px;
+}
+
+.cart-qty-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.cart-qty-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.cart-qty-value {
+  min-width: 24px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cart-item-subtotal {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.cart-item-remove {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+
+.cart-item-remove:hover {
+  background: var(--color-error-light);
+  color: var(--color-error);
+}
+
+/* Cart Summary */
+.cart-summary {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-light);
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.cart-summary-row:not(:last-child) {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.cart-summary-label {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.cart-summary-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cart-summary-row.total {
+  padding-top: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.cart-summary-row.total .cart-summary-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cart-summary-row.total .cart-summary-value {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.free-delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-success-light);
+  color: var(--color-success);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.delivery-progress {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-bg-warm);
+  border-radius: var(--radius);
+}
+
+.delivery-progress-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.delivery-progress-bar {
+  height: 6px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.delivery-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-success) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
