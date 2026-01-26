@@ -172,6 +172,32 @@
   margin-left: var(--space-2);
 }
 
+/* WhatsApp Button */
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp svg {
+  flex-shrink: 0;
+}
+
+.summary-mode,
+.summary-payment {
+  font-size: var(--font-size-sm);
+}
+
 /* Empty Cart State */
 .cart-empty-state {
   flex: 1;
