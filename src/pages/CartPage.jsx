@@ -108,33 +108,35 @@ function CartPage() {
       if (response.ok) {
         const created = await response.json();
 
-        // ✅ Objet envoyé à la page confirmation pour le handshake WhatsApp
-        const orderForWa = {
-          name: customer.name,
-          phone: customer.phone,
-          pickupAddress:
-            deliveryMethod === 'dropOff'
-              ? 'Dépôt sur place'
-              : customer.address,
+        // ✅ Objet envoyé à la page confirmation (snapshot complet)
+const orderForWa = {
+  name: customer.name,
+  phone: customer.phone,
+  pickupAddress:
+    deliveryMethod === 'dropOff'
+      ? 'Dépôt sur place'
+      : customer.address,
 
-          // ✅ FIX: plus de "undefined"
-          itemsText: items
-            .map(i => {
-              const productName =
-                (language === 'he' ? i.nameHe : i.nameFr) || i.name || i.title || 'Article';
-              return `${productName} x${i.quantity}`;
-            })
-            .join(', '),
+  // ✅ IMPORTANT : on envoie le tableau items (pas un texte)
+  items: items.map(i => ({
+    productId: i.productId,
+    nameHe: i.nameHe,
+    nameFr: i.nameFr,
+    price: i.price,
+    quantity: i.quantity
+  })),
 
-          total: grandTotal,
-          slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
-        };
+  total: grandTotal,
+  slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
+};
 
-        clearCart();
+navigate(`/order-confirmation/${created.id}`, {
+  state: { order: orderForWa }
+});
 
-        navigate(`/order-confirmation/${created.id}`, {
-          state: { order: orderForWa }
-        });
+// ✅ Clear APRÈS la navigation pour éviter un order vide
+setTimeout(() => clearCart(), 50);
+
 
       } else {
         throw new Error('Failed to create order');
@@ -145,32 +147,32 @@ function CartPage() {
       // For demo purposes, navigate anyway with a mock order ID
       const mockOrderId = `ORD-${Date.now()}`;
 
-      const orderForWa = {
-        name: customer.name,
-        phone: customer.phone,
-        pickupAddress:
-          deliveryMethod === 'dropOff'
-            ? 'Dépôt sur place'
-            : customer.address,
+     const orderForWa = {
+  name: customer.name,
+  phone: customer.phone,
+  pickupAddress:
+    deliveryMethod === 'dropOff'
+      ? 'Dépôt sur place'
+      : customer.address,
 
-        // ✅ FIX: plus de "undefined"
-        itemsText: items
-          .map(i => {
-            const productName =
-              (language === 'he' ? i.nameHe : i.nameFr) || i.name || i.title || 'Article';
-            return `${productName} x${i.quantity}`;
-          })
-          .join(', '),
+  items: items.map(i => ({
+    productId: i.productId,
+    nameHe: i.nameHe,
+    nameFr: i.nameFr,
+    price: i.price,
+    quantity: i.quantity
+  })),
 
-        total: grandTotal,
-        slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
-      };
+  total: grandTotal,
+  slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
+};
 
-      clearCart();
+navigate(`/order-confirmation/${mockOrderId}`, {
+  state: { order: orderForWa }
+});
 
-      navigate(`/order-confirmation/${mockOrderId}`, {
-        state: { order: orderForWa }
-      });
+setTimeout(() => clearCart(), 50);
+
     } finally {
       setIsSubmitting(false);
     }
