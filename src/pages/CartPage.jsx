@@ -110,14 +110,20 @@ function CartPage() {
 
         // ✅ Objet envoyé à la page confirmation (snapshot complet)
 const orderForWa = {
+  language,
   name: customer.name,
   phone: customer.phone,
+
   pickupAddress:
     deliveryMethod === 'dropOff'
-      ? 'Dépôt sur place'
+      ? (language === 'he' ? 'הפקדה במקום' : 'Dépôt sur place')
       : customer.address,
 
-  // ✅ IMPORTANT : on envoie le tableau items (pas un texte)
+  floor: customer.floor,
+  apartment: customer.apartment,
+  notes: customer.notes,
+  deliveryMethod,
+
   items: items.map(i => ({
     productId: i.productId,
     nameHe: i.nameHe,
@@ -134,8 +140,8 @@ navigate(`/order-confirmation/${created.id}`, {
   state: { order: orderForWa }
 });
 
-// ✅ Clear APRÈS la navigation pour éviter un order vide
 setTimeout(() => clearCart(), 50);
+
 
 
       } else {
@@ -146,14 +152,20 @@ setTimeout(() => clearCart(), 50);
 
       // For demo purposes, navigate anyway with a mock order ID
       const mockOrderId = `ORD-${Date.now()}`;
-
-     const orderForWa = {
+const orderForWa = {
+  language,
   name: customer.name,
   phone: customer.phone,
+
   pickupAddress:
     deliveryMethod === 'dropOff'
-      ? 'Dépôt sur place'
+      ? (language === 'he' ? 'הפקדה במקום' : 'Dépôt sur place')
       : customer.address,
+
+  floor: customer.floor,
+  apartment: customer.apartment,
+  notes: customer.notes,
+  deliveryMethod,
 
   items: items.map(i => ({
     productId: i.productId,
@@ -172,6 +184,7 @@ navigate(`/order-confirmation/${mockOrderId}`, {
 });
 
 setTimeout(() => clearCart(), 50);
+
 
     } finally {
       setIsSubmitting(false);
