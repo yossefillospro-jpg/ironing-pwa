@@ -14,13 +14,18 @@ function OrderConfirmationPage() {
   // Fallback: si jamais order.items n'existe pas, on prend le panier actuel
   const { items: cartItems, grandTotal } = useCart();
 
-  const itemsToSend = Array.isArray(order?.items) && order.items.length > 0
-    ? order.items
-    : cartItems;
+  const itemsToSend =
+    Array.isArray(order?.items) && order.items.length > 0
+      ? order.items
+      : cartItems;
 
-  const totalToSend = typeof order?.total === 'number'
-    ? order.total
-    : grandTotal;
+  const totalToSend =
+    typeof order?.total === 'number'
+      ? order.total
+      : grandTotal;
+
+  // ✅ IMPORTANT : la langue doit venir de la commande si dispo
+  const langToSend = order?.language || language || 'he';
 
   return (
     <div className="confirmation-page">
@@ -47,7 +52,7 @@ function OrderConfirmationPage() {
 
         <div className="confirmation-message">
           <p>
-            {language === 'he'
+            {langToSend === 'he'
               ? 'תודה על ההזמנה! ניצור איתך קשר בקרוב לאישור.'
               : 'Merci pour votre commande ! Nous vous contacterons bientôt pour confirmation.'}
           </p>
@@ -60,22 +65,30 @@ function OrderConfirmationPage() {
               className="btn btn-primary btn-lg btn-block"
               onClick={() =>
                 sendWhatsAppOrder({
+                  language: langToSend,
+
                   name: order.name,
                   phone: order.phone,
                   pickupAddress: order.pickupAddress,
-                  items: itemsToSend,          // ✅ TOUJOURS un tableau
+
+                  // ✅ Ajouts : étage / appart / notes / méthode
+                  floor: order.floor,
+                  apartment: order.apartment,
+                  notes: order.notes,
+                  deliveryMethod: order.deliveryMethod,
+
+                  items: itemsToSend,
                   total: totalToSend,
                   slot: order.slot,
-                  language: language || 'he',  // ✅ pour choisir nameHe / nameFr
                 })
               }
             >
-              {language === 'he' ? 'אישור בוואטסאפ' : 'Confirmer sur WhatsApp'}
+              {langToSend === 'he' ? 'אישור בוואטסאפ' : 'Confirmer sur WhatsApp'}
             </button>
           )}
 
           <p style={{ fontSize: 13, opacity: 0.8, marginTop: 8 }}>
-            {language === 'he'
+            {langToSend === 'he'
               ? 'ההזמנה תאושר רק לאחר אישור בוואטסאפ'
               : 'La commande est confirmée uniquement après validation par WhatsApp.'}
           </p>
@@ -93,4 +106,3 @@ function OrderConfirmationPage() {
 }
 
 export default OrderConfirmationPage;
-
