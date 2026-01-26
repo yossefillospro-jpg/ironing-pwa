@@ -8,14 +8,14 @@ function ProductCard({ product }) {
   const { items, addItem, incrementItem, decrementItem } = useCart();
   const [isAdding, setIsAdding] = useState(false);
 
-  // Get localized name
-  const name = language === 'he' ? product.nameHe : product.nameFr;
-  const displayName = language === 'he' 
-    ? `${product.nameHe} (${product.nameFr})`
-    : `${product.nameFr} (${product.nameHe})`;
+  // Localized display name
+  const displayName =
+    language === 'he'
+      ? `${product.nameHe} (${product.nameFr})`
+      : `${product.nameFr} (${product.nameHe})`;
 
-  // Check if item is in cart
-  const cartItem = items.find(item => item.productId === product.id);
+  // ✅ Use product.productId (not product.id)
+  const cartItem = items.find((item) => item.productId === product.productId);
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const handleAdd = () => {
@@ -24,17 +24,24 @@ function ProductCard({ product }) {
     setTimeout(() => setIsAdding(false), 300);
   };
 
-  // Article icons mapping
+  // ✅ Icons mapping (use your images for skirts)
   const getIcon = (nameHe) => {
+    if (nameHe === 'חצאית קצרה') {
+      return <img className="product-icon-img" src="/icons/skirt-short.webp" alt="Jupe courte" />;
+    }
+
+    if (nameHe === 'חצאית ארוכה') {
+      return <img className="product-icon-img" src="/icons/skirt-long.webp" alt="Jupe longue" />;
+    }
+
     const icons = {
       'טי שירט': '👕',
       'מכופתרת': '👔',
       'מכנס': '👖',
       'שמלה קצרה': '👗',
       'שמלה ארוכה': '👗',
-      'חצאית קצרה': '🩱',
-      'חצאית ארוכה': '🩱'
     };
+
     return icons[nameHe] || '👕';
   };
 
@@ -43,7 +50,7 @@ function ProductCard({ product }) {
       <div className="product-icon">
         {getIcon(product.nameHe)}
       </div>
-      
+
       <div className="product-info">
         <h3 className="product-name">{displayName}</h3>
         <div className="product-price">
@@ -54,7 +61,7 @@ function ProductCard({ product }) {
 
       <div className="product-actions">
         {quantity === 0 ? (
-          <button 
+          <button
             className="btn-add"
             onClick={handleAdd}
             aria-label={t('addToCart')}
@@ -66,9 +73,9 @@ function ProductCard({ product }) {
           </button>
         ) : (
           <div className="quantity-control">
-            <button 
+            <button
               className="qty-btn"
-              onClick={() => decrementItem(product.id)}
+              onClick={() => decrementItem(product.productId)}
               aria-label="Decrease quantity"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -76,9 +83,9 @@ function ProductCard({ product }) {
               </svg>
             </button>
             <span className="qty-value">{quantity}</span>
-            <button 
+            <button
               className="qty-btn"
-              onClick={() => incrementItem(product.id)}
+              onClick={() => incrementItem(product.productId)}
               aria-label="Increase quantity"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -94,3 +101,4 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
+
