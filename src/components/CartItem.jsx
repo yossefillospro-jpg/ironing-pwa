@@ -16,17 +16,25 @@ function CartItem({ item }) {
 
   // Article icons mapping
   const getIcon = (nameHe) => {
-    const icons = {
-      'טי שירט': '👕',
-      'מכופתרת': '👔',
-      'מכנס': '👖',
-      'שמלה קצרה': '👗',
-      'שמלה ארוכה': '👗',
-      'חצאית קצרה': '🩱',
-      'חצאית ארוכה': '🩱'
-    };
-    return icons[nameHe] || '👕';
+  if (nameHe === 'חצאית קצרה') {
+    return <img src="/icons/skirt-short.webp" alt="Jupe courte" />;
+  }
+
+  if (nameHe === 'חצאית ארוכה') {
+    return <img src="/icons/skirt-long.webp" alt="Jupe longue" />;
+  }
+
+  const icons = {
+    'טי שירט': '👕',
+    'מכופתרת': '👔',
+    'מכנס': '👖',
+    'שמלה קצרה': '👗',
+    'שמלה ארוכה': '👗',
   };
+
+  return icons[nameHe] || '👕';
+};
+
 
   return (
     <div className="cart-item">
