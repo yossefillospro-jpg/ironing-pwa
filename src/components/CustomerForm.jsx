@@ -66,28 +66,30 @@ function CustomerForm({ errors = {} }) {
 
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label" htmlFor="floor">{t('floor')}</label>
+              <label className="form-label" htmlFor="floor">{t('floor')} *</label>
               <input
                 type="text"
                 id="floor"
                 name="floor"
-                className="form-input"
+                className={`form-input ${errors.floor ? 'error' : ''}`}
                 value={customer.floor}
                 onChange={handleChange}
                 placeholder={t('floor')}
               />
+              {errors.floor && <span className="form-error">{errors.floor}</span>}
             </div>
             <div className="form-group">
-              <label className="form-label" htmlFor="apartment">{t('apartment')}</label>
+              <label className="form-label" htmlFor="apartment">{t('apartment')} *</label>
               <input
                 type="text"
                 id="apartment"
                 name="apartment"
-                className="form-input"
+                className={`form-input ${errors.apartment ? 'error' : ''}`}
                 value={customer.apartment}
                 onChange={handleChange}
                 placeholder={t('apartment')}
               />
+              {errors.apartment && <span className="form-error">{errors.apartment}</span>}
             </div>
           </div>
         </>
@@ -101,7 +103,7 @@ function CustomerForm({ errors = {} }) {
           className="form-input form-textarea"
           value={customer.notes}
           onChange={handleChange}
-          placeholder={t('notes')}
+          placeholder={t('notesPlaceholder')}
           rows="3"
         />
       </div>
