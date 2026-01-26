@@ -46,9 +46,9 @@ export const translations = {
     dropOff: 'הבאה עצמית',
     
     pickupDeliveryDesc: 'נאסוף ונחזיר עד אליך',
-    pickupOnlyDesc: 'נאסוף ממך',
-    deliveryOnlyDesc: 'נחזיר אליך',
-    dropOffDesc: 'הבא ואסוף מאתנו',
+    pickupOnlyDesc: 'נאסוף ממך בלבד',
+    deliveryOnlyDesc: 'נחזיר אליך בלבד',
+    dropOffDesc: 'תביא ותאסוף מאתנו',
     
     // Same building discount
     sameBuildingTitle: 'אותו בניין',
@@ -83,13 +83,14 @@ export const translations = {
     customerInfo: 'פרטי לקוח',
     fullName: 'שם מלא',
     phone: 'טלפון',
-    address: 'כתובת',
+    address: 'כתובת (רחוב ומספר)',
     floor: 'קומה',
     apartment: 'דירה',
     notes: 'הערות',
+    notesPlaceholder: 'הערות מיוחדות (קוד כניסה, לצלצל פעמיים...)',
     
     // Order
-    placeOrder: 'שלח הזמנה',
+    placeOrder: 'שלח הזמנה בוואטסאפ',
     orderPlaced: 'ההזמנה נשלחה',
     orderNumber: 'מספר הזמנה',
     orderDate: 'תאריך הזמנה',
@@ -136,6 +137,24 @@ export const translations = {
     loading: 'טוען...',
     error: 'שגיאה',
     success: 'הצלחה',
+    
+    // WhatsApp message
+    whatsappIntro: '🧺 בקשת גיהוץ חדשה',
+    whatsappClient: '👤 לקוח',
+    whatsappAddress: '📍 כתובת',
+    whatsappStreet: 'רחוב',
+    whatsappFloor: 'קומה',
+    whatsappApartment: 'דירה',
+    whatsappNotes: 'הערות',
+    whatsappMode: '📦 אופן מסירה',
+    whatsappTimeSlot: '🕐 מועד',
+    whatsappOrder: '🧺 הזמנה',
+    whatsappTotal: '💰 סה"כ',
+    whatsappDeliveryIncluded: 'כולל משלוח',
+    whatsappPayment: '💳 תשלום',
+    whatsappAtDelivery: 'במסירה',
+    whatsappConfirmation: '✅ ממתין לאישור בוואטסאפ',
+    whatsappNoNotes: 'ללא הערות',
     
     // Admin
     adminTitle: 'ממשק ניהול',
@@ -191,8 +210,8 @@ export const translations = {
     dropOff: 'Dépôt sur place',
     
     pickupDeliveryDesc: 'Nous collectons et livrons chez vous',
-    pickupOnlyDesc: 'Nous collectons chez vous',
-    deliveryOnlyDesc: 'Nous livrons chez vous',
+    pickupOnlyDesc: 'Nous collectons uniquement',
+    deliveryOnlyDesc: 'Nous livrons uniquement',
     dropOffDesc: 'Déposez et récupérez sur place',
     
     // Same building discount
@@ -228,13 +247,14 @@ export const translations = {
     customerInfo: 'Vos informations',
     fullName: 'Nom complet',
     phone: 'Téléphone',
-    address: 'Adresse',
+    address: 'Adresse (rue et numéro)',
     floor: 'Étage',
     apartment: 'Appartement',
     notes: 'Notes',
+    notesPlaceholder: 'Notes spéciales (code entrée, sonner 2 fois...)',
     
     // Order
-    placeOrder: 'Valider la commande',
+    placeOrder: 'Envoyer par WhatsApp',
     orderPlaced: 'Commande envoyée',
     orderNumber: 'N° de commande',
     orderDate: 'Date de commande',
@@ -282,6 +302,24 @@ export const translations = {
     error: 'Erreur',
     success: 'Succès',
     
+    // WhatsApp message
+    whatsappIntro: '🧺 Nouvelle demande de repassage',
+    whatsappClient: '👤 Client',
+    whatsappAddress: '📍 Adresse',
+    whatsappStreet: 'Rue',
+    whatsappFloor: 'Étage',
+    whatsappApartment: 'Appartement',
+    whatsappNotes: 'Notes',
+    whatsappMode: '📦 Mode de livraison',
+    whatsappTimeSlot: '🕐 Créneau',
+    whatsappOrder: '🧺 Commande',
+    whatsappTotal: '💰 Total',
+    whatsappDeliveryIncluded: 'dont livraison',
+    whatsappPayment: '💳 Paiement',
+    whatsappAtDelivery: 'à la remise',
+    whatsappConfirmation: '✅ En attente de confirmation WhatsApp',
+    whatsappNoNotes: 'Aucune note',
+    
     // Admin
     adminTitle: 'Administration',
     allOrders: 'Toutes les commandes',
@@ -297,7 +335,6 @@ export const translations = {
 
 /**
  * Get a translation by key
- * Supports nested keys with dot notation: 'cart.title'
  * Supports interpolation: 'Hello {name}' with { name: 'World' }
  */
 export function t(translations, lang, key, params = {}) {
