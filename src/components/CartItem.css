@@ -194,3 +194,9 @@
   border-radius: var(--radius-full);
   transition: width var(--transition-slow);
 }
+.cart-item-icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
