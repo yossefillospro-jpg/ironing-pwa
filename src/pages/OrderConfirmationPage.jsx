@@ -1,14 +1,26 @@
 import React from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useCart } from '../context/CartContext';
 import { sendWhatsAppOrder } from '../utils/whatsapp';
 import './OrderConfirmationPage.css';
 
 function OrderConfirmationPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { orderId } = useParams();
   const location = useLocation();
   const order = location.state?.order;
+
+  // Fallback: si jamais order.items n'existe pas, on prend le panier actuel
+  const { items: cartItems, grandTotal } = useCart();
+
+  const itemsToSend = Array.isArray(order?.items) && order.items.length > 0
+    ? order.items
+    : cartItems;
+
+  const totalToSend = typeof order?.total === 'number'
+    ? order.total
+    : grandTotal;
 
   return (
     <div className="confirmation-page">
@@ -35,13 +47,13 @@ function OrderConfirmationPage() {
 
         <div className="confirmation-message">
           <p>
-            {t('language') === 'he'
+            {language === 'he'
               ? 'תודה על ההזמנה! ניצור איתך קשר בקרוב לאישור.'
               : 'Merci pour votre commande ! Nous vous contacterons bientôt pour confirmation.'}
           </p>
         </div>
 
-        {/* ✅ ICI on met le handshake WhatsApp */}
+        {/* ✅ Handshake WhatsApp */}
         <div className="confirmation-actions">
           {order && (
             <button
@@ -51,18 +63,19 @@ function OrderConfirmationPage() {
                   name: order.name,
                   phone: order.phone,
                   pickupAddress: order.pickupAddress,
-                  items: order.itemsText || order.items,
-                  total: order.total,
+                  items: itemsToSend,          // ✅ TOUJOURS un tableau
+                  total: totalToSend,
                   slot: order.slot,
+                  language: language || 'he',  // ✅ pour choisir nameHe / nameFr
                 })
               }
             >
-              {t('language') === 'he' ? 'אישור בוואטסאפ' : 'Confirmer sur WhatsApp'}
+              {language === 'he' ? 'אישור בוואטסאפ' : 'Confirmer sur WhatsApp'}
             </button>
           )}
 
           <p style={{ fontSize: 13, opacity: 0.8, marginTop: 8 }}>
-            {t('language') === 'he'
+            {language === 'he'
               ? 'ההזמנה תאושר רק לאחר אישור בוואטסאפ'
               : 'La commande est confirmée uniquement après validation par WhatsApp.'}
           </p>
