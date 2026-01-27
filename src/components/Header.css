@@ -256,7 +256,7 @@
   right: auto;
   left: 50%;
   transform: translateX(-14px);
-}/* --- Language overlay: bloque les clics derrière + ferme au clic --- */
+/* --- Language overlay: bloque les clics derrière + ferme au clic --- */
 .lang-overlay {
   position: fixed;
   inset: 0;
@@ -266,4 +266,15 @@
   margin: 0;
   z-index: 999;
   cursor: default;
+}
+
+/* Assure que le dropdown est au-dessus de l'overlay */
+.lang-selector {
+  position: relative;
+  z-index: 1000;
+}
+
+.lang-menu {
+  position: absolute;
+  z-index: 1001;
 }
