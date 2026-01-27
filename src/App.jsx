@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useLanguage } from './context/LanguageContext';
 import Header from './components/Header';
@@ -10,10 +10,17 @@ import AdminPage from './pages/AdminPage';
 import './App.css';
 
 function App() {
-  const { isRTL } = useLanguage();
+  const { language, isRTL } = useLanguage();
+
+  // Mettre à jour la direction du document quand la langue change
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.body.dir = isRTL ? 'rtl' : 'ltr';
+  }, [language, isRTL]);
 
   return (
-    <div className="app-container" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="app-container" dir={isRTL ? 'rtl' : 'ltr'} key={language}>
       <Header />
       <main className="app-main">
         <Routes>
