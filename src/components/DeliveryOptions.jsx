@@ -68,7 +68,7 @@ const handleSameBuildingChange = (e) => {
     });
   }
 };
-  };
+  
 
   return (
     <div className="delivery-options">
