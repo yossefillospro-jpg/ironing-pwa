@@ -8,9 +8,12 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
-      manifest: {
-        name: 'מגהץ פרו - Service de Repassage',
-        short_name: 'מגהץ פרו',
+     manifest: {
+  name: 'Iron JoJo',
+  short_name: 'Iron JoJo',
+  // le reste ne change pas
+}
+
         description: 'Service de repassage professionnel local',
         theme_color: '#1a365d',
         background_color: '#f7fafc',
