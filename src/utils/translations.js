@@ -6,7 +6,7 @@
 export const translations = {
   he: {
     // App
-    appName: 'מגהץ פרו',
+    appName: 'JoJo אירון',
     appTagline: 'שירות גיהוץ מקצועי',
     
     // Navigation
@@ -170,7 +170,7 @@ export const translations = {
   
   fr: {
     // App
-    appName: 'Pressing Pro',
+    appName: 'Iron JoJo',
     appTagline: 'Service de repassage professionnel',
     
     // Navigation
