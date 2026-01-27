@@ -24,38 +24,57 @@ function Header() {
         </Link>
 
         <div className="header-actions">
-          {/* Language Selector */}
-          <div className="lang-selector">
-            <button 
-              className="lang-btn"
-              onClick={() => setShowLangMenu(!showLangMenu)}
-              aria-label={t('language')}
-            >
-              <span className="lang-flag">{language === 'he' ? '🇮🇱' : '🇫🇷'}</span>
-              <span className="lang-code">{language.toUpperCase()}</span>
-              <svg className="lang-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-            
-            {showLangMenu && (
-              <div className="lang-menu">
-                {languages.map(lang => (
-                  <button
-                    key={lang.code}
-                    className={`lang-option ${language === lang.code ? 'active' : ''}`}
-                    onClick={() => {
-                      setLanguage(lang.code);
-                      setShowLangMenu(false);
-                    }}
-                  >
-                    <span className="lang-flag">{lang.code === 'he' ? '🇮🇱' : '🇫🇷'}</span>
-                    <span>{lang.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+  {/* Overlay pour bloquer les clics derrière + fermer au clic */}
+  {showLangMenu && (
+    <button
+      className="lang-overlay"
+      onClick={() => setShowLangMenu(false)}
+      aria-label="Close language menu"
+    />
+  )}
+
+  {/* Language Selector */}
+  <div className={`lang-selector ${showLangMenu ? 'open' : ''}`}>
+    <button 
+      className="lang-btn"
+      onClick={() => setShowLangMenu(!showLangMenu)}
+      aria-label={t('language')}
+      aria-expanded={showLangMenu}
+      aria-haspopup="menu"
+    >
+      <span className="lang-flag">{language === 'he' ? '🇮🇱' : '🇫🇷'}</span>
+      <span className="lang-code">{language.toUpperCase()}</span>
+      <svg className="lang-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    
+    {showLangMenu && (
+      <div className="lang-menu" role="menu">
+        {languages.map(lang => (
+          <button
+            key={lang.code}
+            className={`lang-option ${language === lang.code ? 'active' : ''}`}
+            role="menuitem"
+            onClick={() => {
+              setLanguage(lang.code);
+              setShowLangMenu(false);
+            }}
+          >
+            <span className="lang-flag">{lang.code === 'he' ? '🇮🇱' : '🇫🇷'}</span>
+            <span>{lang.name}</span>
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* Cart Button */}
+  <Link to="/cart" className="cart-btn" aria-label={t('cart')}>
+    ...
+  </Link>
+</div>
+
 
           {/* Cart Button */}
           <Link to="/cart" className="cart-btn" aria-label={t('cart')}>
