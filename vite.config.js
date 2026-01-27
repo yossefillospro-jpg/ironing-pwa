@@ -8,12 +8,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
-     manifest: {
-  name: 'Iron JoJo',
-  short_name: 'Iron JoJo',
-  // le reste ne change pas
-}
-
+      manifest: {
+        name: 'Iron JoJo',
+        short_name: 'Iron JoJo',
         description: 'Service de repassage professionnel local',
         theme_color: '#1a365d',
         background_color: '#f7fafc',
