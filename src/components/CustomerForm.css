@@ -163,4 +163,19 @@
   padding: var(--space-2) var(--space-3);
   background: var(--color-bg-warm);
   border-radius: var(--radius);
+}.form-input.readonly {
+  background: var(--color-bg-warm);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.auto-filled-badge {
+  margin-inline-start: 8px;
+  padding: 2px 8px;
+  background: #c6f6d5;
+  color: #38a169;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
 }
