@@ -50,17 +50,21 @@ function CustomerForm({ errors = {} }) {
 
       {needsAddress && (
         <>
-          <div className="form-group">
-            <label className="form-label" htmlFor="address">{t('address')} *</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              className={`form-input ${errors.address ? 'error' : ''}`}
-              value={customer.address}
-              onChange={handleChange}
-              placeholder={t('address')}
-            />
+         <div className="form-group">
+  <label className="form-label" htmlFor="address">
+    {t('address')} *
+    {customer.isSameBuilding && <span className="auto-filled-badge">✓ {t('sameBuildingTitle')}</span>}
+  </label>
+  <input
+    type="text"
+    id="address"
+    name="address"
+    className={`form-input ${errors.address ? 'error' : ''} ${customer.isSameBuilding ? 'readonly' : ''}`}
+    value={customer.address}
+    onChange={handleChange}
+    placeholder={t('address')}
+    readOnly={customer.isSameBuilding}
+  />
             {errors.address && <span className="form-error">{errors.address}</span>}
           </div>
 
