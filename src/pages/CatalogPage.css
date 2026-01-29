@@ -168,3 +168,40 @@
   padding: var(--space-4);
 }
 
+/* --- Compact hero (mobile) : réduit la zone beige --- */
+@media (max-width: 480px) {
+  .catalog-hero {
+    padding: 14px 14px;       /* au lieu de space-6 */
+  }
+
+  .hero-title {
+    font-size: 1.35rem;       /* au lieu de 2xl */
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;       /* un peu plus petit */
+  }
+
+  .hero-decoration {
+    top: 50%;
+    right: 12px;
+    gap: 8px;
+    opacity: 0.10;            /* plus discret */
+  }
+
+  [dir="rtl"] .hero-decoration {
+    right: auto;
+    left: 12px;
+  }
+
+  .decoration-icon {
+    font-size: 1.8rem;        /* au lieu de 2.5rem */
+  }
+
+  .product-list {
+    padding: 14px;            /* réduit aussi le vide */
+    gap: 10px;                /* au lieu de space-3 */
+  }
+}
