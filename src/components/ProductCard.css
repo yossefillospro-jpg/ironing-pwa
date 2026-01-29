@@ -141,4 +141,51 @@
   object-fit: contain;
   display: block;
 }
+/* --- Compact mobile cards: plus d’items visibles --- */
+@media (max-width: 480px) {
+  .product-card {
+    gap: 12px;            /* au lieu de space-4 */
+    padding: 12px;        /* au lieu de space-4 */
+    border-radius: 14px;
+  }
 
+  .product-icon {
+    width: 48px;          /* 56 -> 48 */
+    height: 48px;
+    font-size: 1.5rem;
+  }
+
+  .product-icon-img {
+    width: 32px;          /* 36 -> 32 */
+    height: 32px;
+  }
+
+  .product-name {
+    font-size: 0.98rem;
+    margin-bottom: 4px;
+  }
+
+  .price-value {
+    font-size: 1.05rem;   /* lg -> un peu plus compact */
+  }
+
+  .btn-add {
+    width: 40px;          /* 44 -> 40 */
+    height: 40px;
+  }
+
+  .qty-btn {
+    width: 30px;          /* 32 -> 30 */
+    height: 30px;
+  }
+
+  .qty-value {
+    min-width: 24px;
+    font-size: 0.95rem;
+  }
+
+  .quantity-control {
+    gap: 8px;
+    padding: 4px;
+  }
+}
