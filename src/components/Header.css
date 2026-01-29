@@ -256,6 +256,8 @@
   right: auto;
   left: 50%;
   transform: translateX(-14px);
+}
+
 /* --- Language overlay: bloque les clics derrière + ferme au clic --- */
 .lang-overlay {
   position: fixed;
@@ -278,3 +280,4 @@
   position: absolute;
   z-index: 1001;
 }
+
