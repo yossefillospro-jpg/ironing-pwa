@@ -1,4 +1,7 @@
-.product-card { outline: 3px solid red !important; }
+.product-card {
+  outline: 3px solid red !important;
+}
+
 /* Product Card Styles */
 
 .product-card {
