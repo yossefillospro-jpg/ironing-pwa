@@ -15,20 +15,19 @@ function Header() {
   return (
     <header className="header">
       <div className="header-top">
-        <Link to="/" className="header-brand">
-         <span className="brand-icon">
+       <Link to="/" className="header-brand">
   <img
     src="/logo-iron-jojo.png"
     alt="Iron JoJo"
     className="brand-logo"
   />
-</span>
 
-          <div className="brand-text">
-            <span className="brand-name">{t('appName')}</span>
-            <span className="brand-tagline">{t('appTagline')}</span>
-          </div>
-        </Link>
+  <div className="brand-text">
+    <span className="brand-name">{t('appName')}</span>
+    <span className="brand-tagline">{t('appTagline')}</span>
+  </div>
+</Link>
+
 
         <div className="header-actions">
           {/* Overlay pour bloquer les clics derrière + fermer au clic */}
