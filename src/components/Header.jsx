@@ -16,7 +16,14 @@ function Header() {
     <header className="header">
       <div className="header-top">
         <Link to="/" className="header-brand">
-          <span className="brand-icon">👔</span>
+         <span className="brand-icon">
+  <img
+    src="/logo-iron-jojo.png"
+    alt="Iron JoJo"
+    className="brand-logo"
+  />
+</span>
+
           <div className="brand-text">
             <span className="brand-name">{t('appName')}</span>
             <span className="brand-tagline">{t('appTagline')}</span>
