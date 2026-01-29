@@ -280,4 +280,40 @@
   position: absolute;
   z-index: 1001;
 }
+/* --- Compact mobile: réduit la hauteur du header --- */
+@media (max-width: 480px) {
+  .header-top {
+    padding: 10px 12px; /* au lieu de var(--space-4) */
+    gap: 10px;
+  }
+
+  .brand-name {
+    font-size: 1.05rem; /* un peu plus petit que XL */
+    line-height: 1.1;
+  }
+
+  .brand-tagline {
+    font-size: 0.72rem;
+  }
+
+  .lang-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .cart-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-link {
+    padding: 10px 6px; /* au lieu de var(--space-3) var(--space-2) */
+    gap: 4px;
+  }
+
+  .nav-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
 
