@@ -1,3 +1,5 @@
+import '../components/ProductCard.css';
+
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
