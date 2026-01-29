@@ -315,5 +315,20 @@
     width: 18px;
     height: 18px;
   }
+}.brand-icon{
+  display: flex;
+  align-items: center;
 }
+
+.brand-logo{
+  height: 44px;   /* augmente ici: 48 / 56 si tu veux */
+  width: auto;
+  display: block;
+}
+
+/* espace entre logo et texte */
+.header-brand{
+  gap: 12px; /* avant c’était var(--space-3). Tu peux augmenter */
+}
+
 
