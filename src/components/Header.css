@@ -45,11 +45,12 @@
 
 /* ✅ Logo image */
 .brand-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* key: fills the box */
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
   display: block;
 }
+
 
 .brand-text {
   display: flex;
