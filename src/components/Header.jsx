@@ -24,7 +24,6 @@ function Header() {
 
   <div className="brand-text">
     <span className="brand-name">{t('appName')}</span>
-    <span className="brand-tagline">{t('appTagline')}</span>
   </div>
 </Link>
 
