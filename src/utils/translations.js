@@ -6,7 +6,7 @@
 export const translations = {
   he: {
     // App
-    appName: 'JoJo אירון',
+    appName: 'Iron JoJo',
     appTagline: 'שירות גיהוץ מקצועי',
     
     // Navigation
