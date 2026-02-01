@@ -12,20 +12,27 @@ function Header() {
 
   const isActive = (path) => location.pathname === path;
 
-  return (
-    <header className="header">
-      <div className="header-top">
-       <Link to="/" className="header-brand">
-  <img
-    src="/logo-iron-jojo.png"
-    alt="Iron JoJo"
-    className="brand-logo"
-  />
 
-  <div className="brand-text">
-    <span className="brand-name">{t('appName')}</span>
-  </div>
-</Link>
+   return (
+  <header className="header">
+    <div className="header-top">
+      <Link to="/" className="header-brand">
+        <span className="brand-icon">
+          <img
+            src="/logo-iron-jojo.png"
+            alt="Iron JoJo"
+            className="brand-logo"
+          />
+        </span>
+
+        <div className="brand-text">
+          <span className="brand-name">{t('appName')}</span>
+        </div>
+      </Link>
+    </div>
+  </header>
+);
+
 
 
         <div className="header-actions">
