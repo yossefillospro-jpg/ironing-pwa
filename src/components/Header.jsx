@@ -12,28 +12,24 @@ function Header() {
 
   const isActive = (path) => location.pathname === path;
 
+  return (
+    <header className="header">
+      <div className="header-top">
+        <Link to="/" className="header-brand" onClick={() => setShowLangMenu(false)}>
+          <span className="brand-icon">
+            <img
+              src="/logo-iron-jojo.png"
+              alt="Iron JoJo"
+              className="brand-logo"
+            />
+          </span>
 
-   return (
-  <header className="header">
-    <div className="header-top">
-      <Link to="/" className="header-brand">
-        <span className="brand-icon">
-          <img
-            src="/logo-iron-jojo.png"
-            alt="Iron JoJo"
-            className="brand-logo"
-          />
-        </span>
-
-        <div className="brand-text">
-          <span className="brand-name">{t('appName')}</span>
-        </div>
-      </Link>
-    </div>
-  </header>
-);
-
-
+          <div className="brand-text">
+            <span className="brand-name">{t('appName')}</span>
+            {/* Si tu veux enlever la tagline dans le header, laisse commenté */}
+            {/* <span className="brand-tagline">{t('appTagline')}</span> */}
+          </div>
+        </Link>
 
         <div className="header-actions">
           {/* Overlay pour bloquer les clics derrière + fermer au clic */}
@@ -93,7 +89,7 @@ function Header() {
           </div>
 
           {/* Cart Button */}
-          <Link to="/cart" className="cart-btn" aria-label={t('cart')}>
+          <Link to="/cart" className="cart-btn" aria-label={t('cart')} onClick={() => setShowLangMenu(false)}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9" cy="21" r="1"></circle>
               <circle cx="20" cy="21" r="1"></circle>
@@ -105,7 +101,7 @@ function Header() {
       </div>
 
       <nav className="header-nav">
-        <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
+        <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`} onClick={() => setShowLangMenu(false)}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -113,7 +109,7 @@ function Header() {
           <span>{t('catalog')}</span>
         </Link>
 
-        <Link to="/cart" className={`nav-link ${isActive('/cart') ? 'active' : ''}`}>
+        <Link to="/cart" className={`nav-link ${isActive('/cart') ? 'active' : ''}`} onClick={() => setShowLangMenu(false)}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
@@ -123,7 +119,7 @@ function Header() {
           {itemCount > 0 && <span className="nav-badge">{itemCount}</span>}
         </Link>
 
-        <Link to="/orders" className={`nav-link ${isActive('/orders') ? 'active' : ''}`}>
+        <Link to="/orders" className={`nav-link ${isActive('/orders') ? 'active' : ''}`} onClick={() => setShowLangMenu(false)}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
@@ -139,5 +135,6 @@ function Header() {
 }
 
 export default Header;
+
 
 
