@@ -1,7 +1,11 @@
 /* Header Component Styles */
 
 .header {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 100%
+  );
   color: var(--color-text-inverse);
   position: sticky;
   top: 0;
@@ -9,6 +13,7 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Top row */
 .header-top {
   display: flex;
   align-items: center;
@@ -21,14 +26,29 @@
 .header-brand {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 14px;
   color: inherit;
   text-decoration: none;
 }
 
+/* ✅ Logo container (force size even if PNG has transparent margins) */
 .brand-icon {
-  font-size: 2rem;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0; /* prevent font-size from affecting image */
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ✅ Logo image */
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* key: fills the box */
+  display: block;
 }
 
 .brand-text {
@@ -41,6 +61,10 @@
   font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 1.2;
+
+  /* keep "Iron JoJo" readable even in RTL */
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .brand-tagline {
@@ -59,6 +83,7 @@
 /* Language Selector */
 .lang-selector {
   position: relative;
+  z-index: 1000; /* above overlay */
 }
 
 .lang-btn {
@@ -107,6 +132,7 @@
   overflow: hidden;
   min-width: 140px;
   animation: slideDown 0.15s ease-out;
+  z-index: 1001; /* above overlay */
 }
 
 [dir="rtl"] .lang-menu {
@@ -148,6 +174,18 @@
 .lang-option.active {
   background: var(--color-primary);
   color: var(--color-text-inverse);
+}
+
+/* Overlay to close language menu when clicking outside */
+.lang-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  z-index: 999;
+  cursor: default;
 }
 
 /* Cart Button */
@@ -219,7 +257,7 @@
 }
 
 .nav-link.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -258,28 +296,7 @@
   transform: translateX(-14px);
 }
 
-/* --- Language overlay: bloque les clics derrière + ferme au clic --- */
-.lang-overlay {
-  position: fixed;
-  inset: 0;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  z-index: 999;
-  cursor: default;
-}
-
-/* Assure que le dropdown est au-dessus de l'overlay */
-.lang-selector {
-  position: relative;
-  z-index: 1000;
-}
-
-.lang-menu {
-  position: absolute;
-  z-index: 1001;
-}/* --- Compact mobile: réduit la hauteur du header --- */
+/* --- Compact mobile --- */
 @media (max-width: 480px) {
   .header-top {
     padding: 10px 12px;
@@ -291,9 +308,9 @@
     line-height: 1.1;
   }
 
-  .brand-tagline {
-    font-size: 0.72rem;
-  }
+  /* optional: hide tagline in header if you want cleaner look
+  .brand-tagline { display: none; }
+  */
 
   .lang-btn {
     padding: 6px 10px;
@@ -315,50 +332,8 @@
     height: 18px;
   }
 
-  /* Logo encore plus grand sur mobile */
-  .brand-logo {
-    width: 60px;
-    height: 60px;
+  .brand-icon {
+    width: 80px;
+    height: 80px;
   }
 }
-
-/* =====================================================
-   LOGO IRON JOJO – VERSION FINALE (GROS + PRO)
-   ===================================================== */
-
-/* Conteneur du logo (annule l’effet icône texte) */
-.brand-icon {
-  display: flex;
-  align-items: center;
-  font-size: 0;
-}
-
-/* Logo image (desktop + tablette) */
-.brand-logo {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-}
-
-/* Espace logo / texte */
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* Nom de marque toujours lisible en RTL/LTR */
-.brand-name {
-  direction: ltr;
-  unicode-bidi: isolate;
-}
-/* FORCE logo size (override total) */
-.header .header-top .header-brand .brand-icon .brand-logo {
-  width: 64px !important;
-  height: 64px !important;
-  object-fit: contain !important;
-  display: block !important;
-}
-
