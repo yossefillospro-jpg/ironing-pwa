@@ -279,16 +279,15 @@
 .lang-menu {
   position: absolute;
   z-index: 1001;
-}
-/* --- Compact mobile: réduit la hauteur du header --- */
+}/* --- Compact mobile: réduit la hauteur du header --- */
 @media (max-width: 480px) {
   .header-top {
-    padding: 10px 12px; /* au lieu de var(--space-4) */
+    padding: 10px 12px;
     gap: 10px;
   }
 
   .brand-name {
-    font-size: 1.05rem; /* un peu plus petit que XL */
+    font-size: 1.05rem;
     line-height: 1.1;
   }
 
@@ -307,7 +306,7 @@
   }
 
   .nav-link {
-    padding: 10px 6px; /* au lieu de var(--space-3) var(--space-2) */
+    padding: 10px 6px;
     gap: 4px;
   }
 
@@ -315,6 +314,14 @@
     width: 18px;
     height: 18px;
   }
+
+  /* Logo encore plus grand sur mobile */
+  .brand-logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
 /* =====================================================
    LOGO IRON JOJO – VERSION FINALE (GROS + PRO)
    ===================================================== */
@@ -323,12 +330,12 @@
 .brand-icon {
   display: flex;
   align-items: center;
-  font-size: 0; /* IMPORTANT : empêche le font-size d’influencer l’image */
+  font-size: 0;
 }
 
-/* Logo image */
+/* Logo image (desktop + tablette) */
 .brand-logo {
-  width: 56px;        /* TAILLE LOGO */
+  width: 56px;
   height: 56px;
   object-fit: contain;
   display: block;
@@ -347,10 +354,3 @@
   direction: ltr;
   unicode-bidi: isolate;
 }
-
-/* Mobile : logo encore plus affirmé */
-@media (max-width: 480px) {
-  .brand-logo {
-    width: 60px;
-    height: 60px;
-  }
