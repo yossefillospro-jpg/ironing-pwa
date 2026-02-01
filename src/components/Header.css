@@ -52,7 +52,7 @@
   display: block;
 
   /* 🔥 REMPLISSAGE (clé du “plus plein”) */
-  transform: scale(1.85);   /* ← augmente ici : 1.7 / 1.85 / 2 */
+  transform: scale(2);   /* ← augmente ici : 1.7 / 1.85 / 2 */
   transform-origin: center;
 }
 
