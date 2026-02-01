@@ -315,20 +315,42 @@
     width: 18px;
     height: 18px;
   }
-}.brand-icon{
+/* =====================================================
+   LOGO IRON JOJO – VERSION FINALE (GROS + PRO)
+   ===================================================== */
+
+/* Conteneur du logo (annule l’effet icône texte) */
+.brand-icon {
   display: flex;
   align-items: center;
+  font-size: 0; /* IMPORTANT : empêche le font-size d’influencer l’image */
 }
 
-.brand-logo{
-  height: 44px;   /* augmente ici: 48 / 56 si tu veux */
-  width: auto;
+/* Logo image */
+.brand-logo {
+  width: 56px;        /* TAILLE LOGO */
+  height: 56px;
+  object-fit: contain;
   display: block;
+  flex-shrink: 0;
 }
 
-/* espace entre logo et texte */
-.header-brand{
-  gap: 12px; /* avant c’était var(--space-3). Tu peux augmenter */
+/* Espace logo / texte */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
+/* Nom de marque toujours lisible en RTL/LTR */
+.brand-name {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
 
+/* Mobile : logo encore plus affirmé */
+@media (max-width: 480px) {
+  .brand-logo {
+    width: 60px;
+    height: 60px;
+  }
