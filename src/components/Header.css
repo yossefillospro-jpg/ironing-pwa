@@ -45,8 +45,10 @@
 .brand-logo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  transform: scale(1.35); /* 👈 ZOOM pour virer les marges transparentes */
+  transform-origin: center;
 }
 
 
