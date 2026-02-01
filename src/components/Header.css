@@ -33,21 +33,23 @@
 
 /* ✅ Logo container (force size even if PNG has transparent margins) */
 .brand-icon {
-  width: 72px;
-  height: 72px;
+  width: 84px;            /* ⬅️ augmente ici : 84 / 92 / 100 */
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   font-size: 0;
+  overflow: hidden;       /* ✅ coupe les marges */
+  border-radius: 16px;    /* optionnel */
 }
 
 .brand-logo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;      /* ✅ remplit le carré */
   display: block;
-  transform: scale(1.35); /* 👈 ZOOM pour virer les marges transparentes */
+  transform: scale(1.45); /* ✅ ZOOM : 1.45 / 1.6 / 1.8 */
   transform-origin: center;
 }
 
