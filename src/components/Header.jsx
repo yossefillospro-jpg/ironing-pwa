@@ -132,11 +132,5 @@ function Header() {
 }
 
 export default Header;
-/* FORCE logo size (override total) */
-.header .header-top .header-brand .brand-icon .brand-logo {
-  width: 64px !important;
-  height: 64px !important;
-  object-fit: contain !important;
-  display: block !important;
-}
+
 
