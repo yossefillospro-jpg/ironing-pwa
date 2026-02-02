@@ -7,7 +7,8 @@ const CUSTOMER_KEY = 'ironing-app-customer';
 
 // Provider address constant (can be updated from settings)
 const DEFAULT_PROVIDER_ADDRESS = 'התקווה 11, רמת גן';
-const DEFAULT_PROVIDER_FULL_ADDRESS = 'התקווה 11, רמת גן, קומה 28, דירה 106';
+const DEFAULT_PROVIDER_FULL_ADDRESS = 'התקווה 11, רמת גן';
+
 
 // Delivery pricing rules
 const DEFAULT_DELIVERY_RULES = {
