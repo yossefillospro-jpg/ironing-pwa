@@ -10,7 +10,8 @@ import { formatTimeSlot } from '../utils/timeSlots';
 import './CartPage.css';
 
 // Numéro WhatsApp du prestataire (à configurer)
-const WHATSAPP_NUMBER = '972545941669'; // Format international sans +
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
+
 
 function CartPage() {
   const { t, language } = useLanguage();
