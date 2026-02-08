@@ -1,1 +1,65 @@
+.acc {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.acc-header {
+  width: 100%;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.acc-title {
+  font-size: 14px;
+}
+
+.acc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.acc-dot.invalid {
+  background: #d32f2f;
+}
+
+.acc-dot.valid {
+  background: #2e7d32;
+}
+
+.acc-arrow {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+  font-size: 18px;
+}
+
+.acc-arrow.open {
+  transform: rotate(180deg);
+}
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.acc-body.open {
+  max-height: 1200px;
+  opacity: 1;
+}
+
+.acc-inner {
+  padding: 12px;
+  border-top: 1px solid #eee;
+}
 
