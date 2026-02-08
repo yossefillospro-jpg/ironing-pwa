@@ -37,7 +37,7 @@ function CartPage() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ✅ Accordion state
+  // Accordion state
   const [openSection, setOpenSection] = useState("delivery");
 
   // Get delivery method label
@@ -56,7 +56,7 @@ function CartPage() {
     return paymentMethod === 'cash' ? t('cash') : t('bit');
   };
 
-  // ✅ Validation states for accordions
+  // Validation states for accordions
   const deliveryValid =
     Boolean(deliveryMethod) &&
     (deliveryMethod === 'dropOff' || Boolean(selectedTimeSlot));
@@ -70,7 +70,7 @@ function CartPage() {
       customer.apartment?.toString().trim()
     ));
 
-  // ✅ Auto-open next section when delivery is valid
+  // Auto-open next section when delivery is valid
   useEffect(() => {
     if (deliveryValid && openSection === "delivery") {
       setOpenSection("customer");
@@ -178,20 +178,15 @@ function CartPage() {
     const ok = validateForm();
 
     if (!ok) {
-      // ✅ Open the right accordion depending on errors (basic, reliable)
-      // If timeSlot/address/floor/apartment errors => delivery section
-      // If name/phone errors => customer section
-      setOpenSection((prev) => {
-        const hasDeliveryErrors =
-          !!errors.timeSlot || !!errors.address || !!errors.floor || !!errors.apartment;
-        const hasCustomerErrors = !!errors.name || !!errors.phone;
+      // Ouvre le bon accordion selon erreurs (timeSlot => delivery, name/phone => customer)
+      const hasDeliveryErrors =
+        !!errors.timeSlot || !!errors.address || !!errors.floor || !!errors.apartment;
+      const hasCustomerErrors = !!errors.name || !!errors.phone;
 
-        if (hasDeliveryErrors) return "delivery";
-        if (hasCustomerErrors) return "customer";
-        return prev;
-      });
+      if (hasDeliveryErrors) setOpenSection("delivery");
+      else if (hasCustomerErrors) setOpenSection("customer");
 
-      // Scroll to first error field (your existing behavior)
+      // Scroll to first error
       const firstErrorField = document.querySelector('.form-input.error');
       if (firstErrorField) {
         firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -262,9 +257,9 @@ function CartPage() {
         </div>
       )}
 
-      {/* ✅ Accordion 1: Delivery + TimeSlot */}
+      {/* Accordion 1: Delivery + TimeSlot */}
       <Accordion
-        title={t('deliveryMethod') || "Mode de collecte"}
+        title={t('deliveryMethod')}
         isOpen={openSection === "delivery"}
         onToggle={() => setOpenSection(openSection === "delivery" ? "" : "delivery")}
         status={deliveryValid ? "valid" : "invalid"}
@@ -277,9 +272,9 @@ function CartPage() {
         )}
       </Accordion>
 
-      {/* ✅ Accordion 2: Customer Form */}
+      {/* Accordion 2: Customer Form */}
       <Accordion
-        title={t('customerInfoTitle') || "Vos informations"}
+        title={t('customerInfo')}
         isOpen={openSection === "customer"}
         onToggle={() => setOpenSection(openSection === "customer" ? "" : "customer")}
         status={customerValid ? "valid" : "invalid"}
@@ -359,3 +354,4 @@ function CartPage() {
 }
 
 export default CartPage;
+
