@@ -15,7 +15,7 @@ const DEFAULT_DELIVERY_RULES = {
   pickupDelivery: 15,   // Collecte + retour
   pickupOnly: 10,       // Collecte seule
   deliveryOnly: 10,     // Retour seul
-  freeThreshold: 50,    // Gratuit si total >= 50₪
+  freeThreshold: 100,    // Gratuit si total >= 100₪
   sameBuildingAddress: 'התקווה 11, רמת גן' // Adresse même immeuble
 };
 
