@@ -91,33 +91,31 @@ function CartPage() {
   };
 
   const handleSubmit = () => {
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    setIsSubmitting(true);
+  setIsSubmitting(true);
 
-    const pickupAddress = customer.isSameBuilding
-      ? providerFullAddress
-      : customer.address;
+  const pickupAddress = customer.isSameBuilding
+    ? providerFullAddress
+    : customer.address;
 
-    sendWhatsAppOrder({
-      name: customer.name,
-      phone: customer.phone,
-      pickupAddress,
-      floor: customer.floor,
-      apartment: customer.apartment,
-      notes: customer.notes,
-      items,
-      total: grandTotal,
-      slot: selectedTimeSlot
-        ? formatTimeSlot(selectedTimeSlot, language)
-        : '',
-      language
-    });
+  sendWhatsAppOrder({
+    name: customer.name,
+    phone: customer.phone,
+    pickupAddress,
+    floor: customer.floor,
+    apartment: customer.apartment,
+    notes: customer.notes,
+    items,
+    total: grandTotal,
+    slot: selectedTimeSlot ? formatTimeSlot(selectedTimeSlot, language) : '',
+    language
+  });
 
-      const orderId = `ORD-${Date.now().toString(36).toUpperCase()}`;
+  const orderId = `ORD-${Date.now().toString(36).toUpperCase()}`;
 
-    setTimeout(() => {
-      clearCart();
-      navigate(`/order-confirmation/${orderId}`);
-    }, 500);
-  };
+  setTimeout(() => {
+    clearCart();
+    navigate(`/order-confirmation/${orderId}`);
+  }, 500);
+};
