@@ -114,4 +114,10 @@ function CartPage() {
       language
     });
 
-    const order
+      const orderId = `ORD-${Date.now().toString(36).toUpperCase()}`;
+
+    setTimeout(() => {
+      clearCart();
+      navigate(`/order-confirmation/${orderId}`);
+    }, 500);
+  };
