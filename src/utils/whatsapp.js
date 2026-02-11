@@ -1,17 +1,17 @@
-const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER; // ex: 972501234567 (sans +)
 
-export function sendWhatsAppOrder({ 
-  name, 
-  phone, 
-  pickupAddress, 
+export function sendWhatsAppOrder({
+  name,
+  phone,
+  pickupAddress,
   floor,
   apartment,
-  items, 
-  total, 
-  slot, 
-  language = "he" 
+  notes,
+  items,
+  total,
+  slot,
+  language = "he"
 }) {
-
   const orderLine = Array.isArray(items)
     ? items
         .map((item) => {
@@ -35,15 +35,13 @@ Adresse de collecte :
 ${pickupAddress}
 Étage : ${floor || "-"}
 Appartement : ${apartment || "-"}
+Notes : ${notes || "-"}
 
 Commande :
 ${orderLine}
 
 Total estimé : ${total} ₪
-Créneau souhaité : ${slot}
-
-📍 Dépôt / retour :
-Hatikva 11, Ramat Gan
+Créneau souhaité : ${slot || "-"}
 
 ✅ Confirmation : la commande est validée uniquement après accord par WhatsApp.`;
 
