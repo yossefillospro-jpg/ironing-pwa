@@ -56,16 +56,17 @@ function CartPage() {
     return paymentMethod === 'cash' ? t('cash') : t('bit');
   };
 
-  // Validation states for accordions
+  // ✅ Validation states for accordions
   const deliveryValid =
     Boolean(deliveryMethod) &&
     (deliveryMethod === 'dropOff' || Boolean(selectedTimeSlot));
 
+  // ✅ FIX: adresse obligatoire uniquement si PAS même immeuble
   const customerValid =
     customer.name?.trim() &&
     customer.phone?.trim() &&
     (deliveryMethod === 'dropOff' || (
-      customer.address?.trim() &&
+      (customer.isSameBuilding || customer.address?.trim()) &&
       customer.floor?.toString().trim() &&
       customer.apartment?.toString().trim()
     ));
@@ -91,25 +92,24 @@ function CartPage() {
       newErrors.phone = t('invalidPhone');
     }
 
-   if (deliveryMethod !== 'dropOff') {
-  // ✅ Adresse obligatoire seulement si PAS "même immeuble"
-  if (!customer.isSameBuilding && !customer.address?.trim()) {
-    newErrors.address = t('requiredField');
-  }
+    if (deliveryMethod !== 'dropOff') {
+      // ✅ Adresse obligatoire seulement si PAS "même immeuble"
+      if (!customer.isSameBuilding && !customer.address?.trim()) {
+        newErrors.address = t('requiredField');
+      }
 
-  // ✅ étage + appartement toujours obligatoires (sauf dropOff)
-  if (!customer.floor?.toString().trim()) {
-    newErrors.floor = t('requiredField');
-  }
-  if (!customer.apartment?.toString().trim()) {
-    newErrors.apartment = t('requiredField');
-  }
+      // ✅ étage + appartement toujours obligatoires (sauf dropOff)
+      if (!customer.floor?.toString().trim()) {
+        newErrors.floor = t('requiredField');
+      }
+      if (!customer.apartment?.toString().trim()) {
+        newErrors.apartment = t('requiredField');
+      }
 
-  if (!selectedTimeSlot) {
-    newErrors.timeSlot = t('selectTimeSlot');
-  }
-}
-
+      if (!selectedTimeSlot) {
+        newErrors.timeSlot = t('selectTimeSlot');
+      }
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -118,6 +118,11 @@ function CartPage() {
   // Generate WhatsApp message
   const generateWhatsAppMessage = () => {
     const lines = [];
+
+    // ✅ Adresse qui sera envoyée sur WhatsApp
+    const pickupAddress = customer.isSameBuilding
+      ? providerFullAddress
+      : (customer.address || '');
 
     // Header
     lines.push(t('whatsappIntro'));
@@ -132,7 +137,7 @@ function CartPage() {
     // Address (only for pickup/delivery)
     if (deliveryMethod !== 'dropOff') {
       lines.push(t('whatsappAddress') + ':');
-      lines.push(`${t('whatsappStreet')}: ${customer.address}`);
+      lines.push(`${t('whatsappStreet')}: ${pickupAddress}`);
       lines.push(`${t('whatsappFloor')}: ${customer.floor}`);
       lines.push(`${t('whatsappApartment')}: ${customer.apartment}`);
       lines.push(`${t('whatsappNotes')}: ${customer.notes || t('whatsappNoNotes')}`);
@@ -183,7 +188,7 @@ function CartPage() {
     const ok = validateForm();
 
     if (!ok) {
-      // Ouvre le bon accordion selon erreurs (timeSlot => delivery, name/phone => customer)
+      // Ouvre le bon accordion selon erreurs
       const hasDeliveryErrors =
         !!errors.timeSlot || !!errors.address || !!errors.floor || !!errors.apartment;
       const hasCustomerErrors = !!errors.name || !!errors.phone;
@@ -359,4 +364,3 @@ function CartPage() {
 }
 
 export default CartPage;
-
