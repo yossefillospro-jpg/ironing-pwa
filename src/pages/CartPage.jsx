@@ -91,20 +91,25 @@ function CartPage() {
       newErrors.phone = t('invalidPhone');
     }
 
-    if (deliveryMethod !== 'dropOff') {
-      if (!customer.address.trim()) {
-        newErrors.address = t('requiredField');
-      }
-      if (!customer.floor.trim()) {
-        newErrors.floor = t('requiredField');
-      }
-      if (!customer.apartment.trim()) {
-        newErrors.apartment = t('requiredField');
-      }
-      if (!selectedTimeSlot) {
-        newErrors.timeSlot = t('selectTimeSlot');
-      }
-    }
+   if (deliveryMethod !== 'dropOff') {
+  // ✅ Adresse obligatoire seulement si PAS "même immeuble"
+  if (!customer.isSameBuilding && !customer.address?.trim()) {
+    newErrors.address = t('requiredField');
+  }
+
+  // ✅ étage + appartement toujours obligatoires (sauf dropOff)
+  if (!customer.floor?.toString().trim()) {
+    newErrors.floor = t('requiredField');
+  }
+  if (!customer.apartment?.toString().trim()) {
+    newErrors.apartment = t('requiredField');
+  }
+
+  if (!selectedTimeSlot) {
+    newErrors.timeSlot = t('selectTimeSlot');
+  }
+}
+
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
