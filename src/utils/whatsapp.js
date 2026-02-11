@@ -1,7 +1,17 @@
-const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER; // ex: 972501234567 (sans +)
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
-export function sendWhatsAppOrder({ name, phone, pickupAddress, items, total, slot, language = "he" }) {
-  // items doit être un tableau: [{ quantity, nameHe, nameFr, productId, price }, ...]
+export function sendWhatsAppOrder({ 
+  name, 
+  phone, 
+  pickupAddress, 
+  floor,
+  apartment,
+  items, 
+  total, 
+  slot, 
+  language = "he" 
+}) {
+
   const orderLine = Array.isArray(items)
     ? items
         .map((item) => {
@@ -23,6 +33,8 @@ Téléphone : ${phone}
 
 Adresse de collecte :
 ${pickupAddress}
+Étage : ${floor || "-"}
+Appartement : ${apartment || "-"}
 
 Commande :
 ${orderLine}
