@@ -53,21 +53,19 @@ const SAME_BUILDING_ADDRESS = 'התקווה 11, רמת גן';
 
 const handleSameBuildingChange = (e) => {
   const isChecked = e.target.checked;
-  
+
   if (isChecked) {
-    // Auto-remplir l'adresse
     updateCustomer({ 
       isSameBuilding: true,
       address: SAME_BUILDING_ADDRESS
     });
   } else {
-    // Vider l'adresse si on décoche
     updateCustomer({ 
-      isSameBuilding: false,
-      address: ''
+      isSameBuilding: false
     });
   }
 };
+
   
 
   return (
